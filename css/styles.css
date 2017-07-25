@@ -13,7 +13,6 @@ body {
 }
 
 /* HEADER SECTION */
-
 .header {
   text-align: center;
   border: 1px solid black;
@@ -45,11 +44,16 @@ ul {
 /* MAIN SECTION / TEXT OUPUT */
 
 .mainSection {
-  overflow:auto;
+
+  overflow-y: scroll;
   height: 800px;
   padding-top: 25px;
   border: 1px solid black;
+
 }
+/*#help {
+  display: none;
+}*/
 
 /* USER INPUT AREA */
 

@@ -153,7 +153,30 @@ $(document).ready(function() {
     event.preventDefault();
 
     var userText = $("#inputArea").val()
+    switch(userText) {
+      case "help":
+        $(".mainSection").append(showHelp());
+        $(".mainSection").animate({ scrollTop: $(document).height() });//this functionality fails after some iteration
+        break;
+      case "open":
+        $(".mainSection").append("What are you trying to open?");
+        break;
+      case "use":
+        $(".mainSection").append("What are you trying to use?");
+        break;
+      case "grab":
+        $(".mainSection").appen
+
+      case "look" || "look around":
+        look();
+    };
+  //   $(".messages").animate({ scrollTop: $(document).height() }, "slow");
+  // return false;
+    // $(".mainSection").animate({ scrollTop: $(document).height() }); return false;
+
+    var userText = $("#inputArea").val()
     userInteraction(userText);
+
 
   });
 });
