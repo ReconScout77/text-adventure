@@ -2,7 +2,7 @@
 
 #### _Word Adventure 07.25.17_
 
-#### By _**Robert Murray, Victor Puentes, Michael Woldemedihin, Charlie Brown, Jessi***_
+#### By _**Robert Murray, Victor Puentes, Michael Woldemedihin, Charlie Brown, Jessie Bryan**_
 
 ## Description
 
@@ -62,4 +62,4 @@ _JavaScript & jQuery_
 
 This software is licensed by the MIT License
 
-Copyright (c) 2017 **_Robert Murray & Kaili Nishihira_**
+Copyright (c) 2017 **_Robert Murray, Victor Puentes, Michael Woldemedihin, Charlie Brown, Jessie Bryan_**
