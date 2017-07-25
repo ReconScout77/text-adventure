@@ -1,8 +1,18 @@
+body {
+  font-family: "Artifika";
+  font-size: 15px;
+}
+
 /* HEADER SECTION */
 
 .header {
   text-align: center;
   border: 1px solid black;
+}
+
+h1 {
+  font-size: 4em;
+  letter-spacing: 8px;
 }
 
 /* INVENTORY / SIDEBAR */
