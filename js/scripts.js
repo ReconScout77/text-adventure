@@ -4,9 +4,13 @@ var inventory = [];
 
 function Room () {
   this.roomNumber = 1;
+<<<<<<< HEAD
+  this.look = "You see a door, a stainless steel box, and a trail of blood.";
+=======
   this.look = "You see a door, a steel chest, and a trail of blood.";
   var door = new Door(true);
   var box = new Box(true);
+>>>>>>> master
   this.objects = [door, box];
 
 }
@@ -115,9 +119,13 @@ var inspect = function(article = '') {
     } else if (article === 'box') {
       return "The box seems to be locked and made of industry-grade stainless steel with a alphanumeric digital keypad on the side and some text on the side that says, 'To see what's inside this box you must know what all first websites have in common.'";
     } else if (article === 'key') {
-      return "This key looks like it was made for a door. Try opening one.";
+      if (!box.locked) {
+        return "This key looks like it was made for a door. Try opening one.";
+      } else {
+        return "You can't see any such object."
+      }
     } else {
-      return "You can't see any such object."
+      return "You can't see any such object.";
     }
   }
 }
@@ -126,9 +134,29 @@ var grab = function(article = '') {
   if (!article) {
     return "What are you trying to grab?";
   } else {
-
+    if (article === 'door') {
+      return "You grab the door handle and it doesn't open.";
+    } else if (article === 'blood') {
+      return "Now the blood is on your hands. I hope the cops don't show up.";
+    } else if (article === 'paper') {
+      return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said 'HoWled roll'......I think, but that's probably not right.\"";
+    } else if (article === 'box') {
+      return "The box is bolted to the ground.";
+    } else if (article === 'key') {
+      if (box.locked) {
+        return "You can't grab that.";
+      } else if (inventory[0] != "key") {
+        inventory.push("key");
+        return "You grab the key and your heart fills with glee. You realize that there might be a way out of this awful room.";
+      } else {
+        return "You already picked up the key. You should probably get your eyes checked."
+      }
+    } else {
+      return "You can't grab that...";
+    }
   }
 }
+
 //User Interface Logic
 $(document).ready(function() {
   $("#formInput").submit(function(event){
