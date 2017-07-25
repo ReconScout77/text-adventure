@@ -1,6 +1,15 @@
 body {
   font-family: "Artifika";
   font-size: 15px;
+  background-image: url("/Users/Guest/Desktop/text-adventure/img/Haunted_House.jpg");
+  background-position: top;
+  background-size: cover;
+}
+
+.container {
+  z-index: 1;
+  margin-top: 30px;
+  background-color: white;
 }
 
 /* HEADER SECTION */
@@ -8,8 +17,11 @@ body {
 .header {
   text-align: center;
   border: 1px solid black;
+  color: #FFFFFF;
+  background-image: url("/Users/Guest/Desktop/text-adventure/img/haunted2.jpg");
+  background-position: bottom;
+  background-size: cover;
 }
-
 h1 {
   font-size: 4em;
   letter-spacing: 8px;
@@ -21,6 +33,8 @@ h1 {
   min-height: 800px;
   border: 1px solid black;
   text-align: center;
+  background-color:
+  font-size: 24px;
 }
 
 ul {
@@ -42,6 +56,8 @@ ul {
 .userInput {
   border: 1px solid black;
   text-align: center;
+  background-color:
+  font-size: 25px;
 }
 
 #inputArea {
