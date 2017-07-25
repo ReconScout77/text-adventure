@@ -1,0 +1,53 @@
+body {
+  font-family: "Artifika";
+  font-size: 15px;
+}
+
+/* HEADER SECTION */
+
+.header {
+  text-align: center;
+  border: 1px solid black;
+}
+
+h1 {
+  font-size: 4em;
+  letter-spacing: 8px;
+}
+
+/* INVENTORY / SIDEBAR */
+
+.sidebar {
+  min-height: 800px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+/* MAIN SECTION / TEXT OUPUT */
+
+.mainSection {
+  overflow:auto;
+  height: 800px;
+  padding-top: 25px;
+  border: 1px solid black;
+}
+
+/* USER INPUT AREA */
+
+.userInput {
+  border: 1px solid black;
+  text-align: center;
+}
+
+#inputArea {
+  margin-top: 25px;
+}
+
+#formInput {
+  display:none;
+}
