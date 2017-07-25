@@ -4,8 +4,15 @@ var inventory = [];
 
 function Room () {
   this.roomNumber = 1;
+<<<<<<< HEAD
   this.look = "You see a door, a stainless steel box, and a trail of blood.";
+=======
+  this.look = "You see a door, a steel chest, and a trail of blood.";
+  var door = new Door(true);
+  var box = new Box(true);
+>>>>>>> master
   this.objects = [door, box];
+
 }
 
 function Door(locked) {
@@ -16,13 +23,15 @@ function Box(locked) {
   this.locked = locked;
 }
 
-var userInteraction = function(input) {
+var userInteraction = function(input, room) {
   switch(input) {
     case "help":
-      $(".mainSection").append(showHelp());
+     return showHelp();
+      // $(".mainSection").append(showHelp());
       break;
     case "look" || "look around":
-      look(room);
+      // $(".mainSection").append(look(room));
+      return look(room);
   };
 }
 
@@ -45,6 +54,7 @@ var look = function(room) {
   //     returnStr+= object + ", "
   //   }
   // }
+
   return room.look;
 }
 
@@ -151,31 +161,33 @@ var grab = function(article = '') {
 $(document).ready(function() {
   $("#formInput").submit(function(event){
     event.preventDefault();
-
+    var room = new Room();
     var userText = $("#inputArea").val()
-    switch(userText) {
-      case "help":
-        $(".mainSection").append(showHelp());
-        $(".mainSection").animate({ scrollTop: $(document).height() });//this functionality fails after some iteration
-        break;
-      case "open":
-        $(".mainSection").append("What are you trying to open?");
-        break;
-      case "use":
-        $(".mainSection").append("What are you trying to use?");
-        break;
-      case "grab":
-        $(".mainSection").appen
-
-      case "look" || "look around":
-        look();
-    };
+    var response =  userInteraction(userText, room);
+    $(".mainSection").append(response);
+    // switch(userText) {
+    //   case "help":
+    //   userInteraction("help" or "look");
+    //     // $(".mainSection").append(showHelp());
+    //     $(".mainSection").animate({ scrollTop: $(document).height() });//this functionality fails after some iteration
+    //     break;
+    //   case "open":
+    //     $(".mainSection").append("What are you trying to open?");
+    //     break;
+    //   case "use":
+    //     $(".mainSection").append("What are you trying to use?");
+    //     break;
+    //   case "grab":
+    //     $(".mainSection").appen
+    //
+    //   case "look" || "look around":
+    //     look("look");
+    //     break
+    // };
   //   $(".messages").animate({ scrollTop: $(document).height() }, "slow");
   // return false;
     // $(".mainSection").animate({ scrollTop: $(document).height() }); return false;
 
-    var userText = $("#inputArea").val()
-    userInteraction(userText);
 
 
   });
