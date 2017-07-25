@@ -4,13 +4,9 @@ var inventory = [];
 
 function Room () {
   this.roomNumber = 1;
-<<<<<<< HEAD
   this.look = "You see a door, a stainless steel box, and a trail of blood.";
-=======
-  this.look = "You see a door, a steel chest, and a trail of blood.";
   var door = new Door(true);
   var box = new Box(true);
->>>>>>> master
   this.objects = [door, box];
 
 }
