@@ -1,5 +1,16 @@
-#formInput {
-  display:none;
+/* HEADER SECTION */
+
+.header {
+  text-align: center;
+  border: 1px solid black;
+}
+
+/* INVENTORY / SIDEBAR */
+
+.sidebar {
+  min-height: 800px;
+  border: 1px solid black;
+  text-align: center;
 }
 
 ul {
@@ -7,10 +18,7 @@ ul {
   padding-left: 0px;
 }
 
-.header {
-  text-align: center;
-  border: 1px solid black;
-}
+/* MAIN SECTION / TEXT OUPUT */
 
 .mainSection {
   overflow:auto;
@@ -19,11 +27,7 @@ ul {
   border: 1px solid black;
 }
 
-.sidebar {
-  min-height: 800px;
-  border: 1px solid black;
-  text-align: center;
-}
+/* USER INPUT AREA */
 
 .userInput {
   border: 1px solid black;
@@ -32,4 +36,8 @@ ul {
 
 #inputArea {
   margin-top: 25px;
+}
+
+#formInput {
+  display:none;
 }
