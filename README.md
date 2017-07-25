@@ -12,8 +12,7 @@ _This is a text based game whose objective is solving puzzles to scape from the 
 | Behavior  | Input  | Output  |
 |---|---|---|
 | User visits website |  website loads| You wake up in an unfamiliar room on the floor. <br> On the ceiling written in blood "Type 'help' to see commands" <br> You consider it as you stand up.  |
-|User types "help"| `help` | Commands for House Escape <br>`look` = look around the room <br>`open` + `object` = open the object if it can be opened <br>`use` + `object` = interact with the object in the room <br>`grab` + `object` = grab the object if it can be grabbed <br>`inspect` + `object` = look at the object closely <br>
- |
+|User types "help"| `help` | Commands for House Escape <br>`look` = look around the room <br>`open` + `object` = open the object if it can be opened <br>`use` + `object` = interact with the object in the room <br>`grab` + `object` = grab the object if it can be grabbed <br>`inspect` + `object` = look at the object closely|
 | User enters "look" | `look`, `look around` |  You see a trail of blood, a steel box with a keypad and a door |
 |  User types "open" | `open`  | What are you trying to open? |
 | User types "use"   | `use`  | What are you trying to use?  |
