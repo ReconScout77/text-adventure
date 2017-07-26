@@ -11,12 +11,12 @@ function Room () {
 
 }
 
-function Door(locked) {
-  this.locked = locked;
+function Door() {
+  this.locked = true;
 }
 
-function Box(locked) {
-  this.locked = locked;
+function Box() {
+  this.locked = true;
 }
 
 var userInteraction = function(input, room) {
@@ -42,12 +42,15 @@ var look = function(room) {
   return room.look;
 }
 
-var open = function(article = '', door) {
+var open = function(userInput, object) {
+  debugger;
+  var userInputArr = userInput.split(' ');
+  var article = userInputArr [1];
   if (!article) {
     return "What are you trying to open?";
   } else {
-    if (article === 'door') {
-      if (door.locked) {
+    if (object instanceof Door) {
+      if (object.locked) {
         return "You try vigorously to get out but the door seems to be locked. Your mind starts to race.";
       } else {
         return "Congratulations!!! You open the door and step into a dark room that smells of fragrant cheese. The door slams shut behind you.";
@@ -121,41 +124,48 @@ var grab = function(article = '') {
 $(document).ready(function() {
   $("#formInput").submit(function(event){
     event.preventDefault();
+    debugger;
     var room = new Room();
     var userText = $("#inputArea").val()
-    var response =  userInteraction(userText, room);
-    if (userText === "help" || userText === "look") {
-      $(".mainSection").append(response);
-      $('.mainSection').animate({scrollTop: $('.mainSection').prop("scrollHeight")}, 5);
-    }else if (userText === "open" || userText === "open door") {
+    var userTextArr = userText.split(' ');
+    var response;
+    var door;
+    //debugger;
+    switch (userTextArr[0]) {
+      case "help":
+        response =  userInteraction(userText, room);
+        break;
+      case "look":
+        response =  userInteraction(userText, room);
+        break;
+      case "open":
+        if (userTextArr[1] === 'door') {
+          door = new Door();
+          response = open(userText, door);
+          break;
+        }else {
+          response = open(userText, door);
+        }
 
+      // case "use":
+      //   response =  userInteraction(userText, room);
+      //   break;
+      // case "grab":
+      //   response =  userInteraction(userText, room);
+      //   break;
+      // case "inspect":
+      //   response =  userInteraction(userText, room);
+      //   break;
+      default:
     }
-    //$("html, body").animate({ scrollTop: $(document).height()});
-    //this functionality fails after some iteration
-    // switch(userText) {
-    //   case "help":
-    //   userInteraction("help" or "look");
-    //     // $(".mainSection").append(showHelp());
+    // if (userText === "help" || userText === "look") {
+    //   $(".mainSection").append(response);
+    // }else if (userText === "open" || userText === "open door") { debugger;
+    //   response = open(userText);
+    //   $(".mainSection").append(response);
     //
-    //     break;
-    //   case "open":
-    //     $(".mainSection").append("What are you trying to open?");
-    //     break;
-    //   case "use":
-    //     $(".mainSection").append("What are you trying to use?");
-    //     break;
-    //   case "grab":
-    //     $(".mainSection").appen
-    //
-    //   case "look" || "look around":
-    //     look("look");
-    //     break
-    // };
-  //   $(".messages").animate({ scrollTop: $(document).height() }, "slow");
-  // return false;
-    // $(".mainSection").animate({ scrollTop: $(document).height() }); return false;
-
-
-
+    // }
+    $(".mainSection").append(response + "<br>");
+    $('.mainSection').animate({scrollTop: $('.mainSection').prop("scrollHeight")}, 5);
   });
 });
