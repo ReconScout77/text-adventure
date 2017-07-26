@@ -16,20 +16,24 @@ body {
 /* HEADER SECTION */
 .header {
   text-align: center;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   color: white;
   background-image: url("../img/haunted2.jpg");
   background-position: bottom;
   background-size: cover;
 }
 .help-menu {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   height: 400px;
   text-align: left;
 }
 .inventory{
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   height: 300px;
+}
+#helpCommand, #inventory-text{
+  background-color: darkred;
+  color: white;
 }
 h1 {
   font-size: 4em;
@@ -40,10 +44,10 @@ h1 {
 
 .sidebar {
   min-height: 700px;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   text-align: center;
-  background-color:
-  font-size: 24px;
+  background-color:snow;
+  font-size: 15px;
 }
 
 ul {
@@ -57,17 +61,18 @@ ul {
   overflow-y: scroll;
   height: 700px;
   padding-top: 25px;
-  border: 1px solid black;
-  color: darkred;
+  /*border: 1px solid black;*/
+  color: #00cc00;
+  font-weight: bolder;
   /*background-image: url("../img/glowingKey.jpeg");*/
   background-repeat:no-repeat;
-  background-position: bottom;;
+  background-position: center;
 }
 #game-header {
   color: white;
   font-size: 20px;
   text-align: center;
-  background-color:  #330000;
+  background-color:  darkred;
   padding: 10px;
   border-radius: 20px;
 }
@@ -83,11 +88,12 @@ ul {
 /* USER INPUT AREA */
 
 .userInput {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   text-align: center;
   font-size: 15px;
   /*margin-bottom: 10px;*/
   background-image: url("../img/1.jpg");
+  /*opacity:*/
   /*background-image: url("../img/moon.jpg");
 */
   background-position: top;
