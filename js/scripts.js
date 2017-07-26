@@ -16,12 +16,13 @@ function Door() {
 }
 function Box() {
   this.locked = true;
-}
-function KeyPad() {
   this.passcode = "hello world";
 }
+// function KeyPad() {
+//   this.passcode = "hello world";
+// }
 function Paper(){
-  this.anagram = "howled roll";
+  this.anagram = "HoWled roll";
   this.message = "My fondest moment as a programmer was my first website and it said '" + this.anagram + "'......I think, but that's probably not right";
 }
 var userInteraction = function(input, room) {
@@ -55,15 +56,19 @@ var open = function(userInput, object) {
     return "What are you trying to open?";
   }else if (article === 'key') {
   	return 'Keys are for opening things not the other way around.';
-  }else {
+  } else {
     if (object instanceof Door) {
-      if (object.locked) {
-        return "You try vigorously to get out but the door seems to be locked. Your mind starts to race.";
-      } else {
+      if (inventory[0] === "key") {
         return "Congratulations!!! You open the door and step into a dark room that smells of fragrant cheese. The door slams shut behind you.";
+      } else {
+      return "You try vigorously to get out but the door seems to be locked. Your mind starts to race.";
       }
     } else if (object instanceof Box) {
-      return 'The box is locked but you see that it has an alphanumeric keypad.';
+      if (object.locked) {
+        return 'The box is locked but you see that it has an alphanumeric keypad.';
+      } else {
+        return 'This box is already open!';
+      }
     } else {
       return "You can't open that...";
     }
@@ -78,18 +83,29 @@ var use = function(userInput, object) {
   } else if (object instanceof Door) {
     return "What the heck do you mean 'use' door? Did you mean 'open door'?";
   } else if (object instanceof Box) {
-    return "How do you intend to use the box? It's a box that is yearning to be opened.";
+    if (article === "box") {
+      return "How do you intend to use the box? It's a box that is yearning to be opened.";
+    }else if (article === "keypad") {
+      var enterPasscode = prompt("Please enter the passcode:");
+      if (enterPasscode.toLowerCase() === object.passcode) {
+        object.locked = false;
+        return "You hear a click and the box creaks open. A key glows from the bottom of the box."
+      } else {
+        return "Incorrect passcode, please try again"
+      }
+    }
   } else if (article === 'key') {
     return "This key looks like it was made for a door. Try opening one."
-  } else if (object instanceof KeyPad){
-    var enterPasscode = prompt("Please enter the passcode:");
-    if (enterPasscode.toLowerCase() === object.passcode) {
-      object.locked = false;
-      return "You hear a click and the box creaks open. A key glows from the bottom of the box."
-    } else {
-      return "A message populates the LCD screen on the keypad saying 'Incorrect passcode, please try again'"
-    }
-  } else {
+  // } else if (object instanceof Box){
+  //   // var enterPasscode = prompt("Please enter the passcode:");
+  //   // if (enterPasscode.toLowerCase() === object.passcode) {
+  //   //   object.locked = false;
+  //   //   return "You hear a click and the box creaks open. A key glows from the bottom of the box."
+  //   // } else {
+  //   //   return "A message populates the LCD screen on the keypad saying 'Incorrect passcode, please try again'"
+  //   // }
+  }
+  else {
     return "You can't use that..."
   }
 }
@@ -113,7 +129,7 @@ var inspect = function(userInput, object) {
     } else if (article === 'paper') {
       return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said 'HoWled roll'......I think, but that's probably not right.\"";
     } else if (article === 'box') {
-      return "The box seems to be locked and made of industry-grade stainless steel with a alphanumeric digital keypad on the side and some text on the side that says, 'To see what's inside this box you must know what all first websites have in common.'";
+      return "The box seems to be locked and made of industry-grade stainless steel with an alphanumeric digital keypad on the side and some text on the side that says, 'To see what's inside this box you must know what all first websites have in common.'";
     } else if (article === 'key') {
       return "This key looks like it was made for a door. Try opening one.";
     } else {
@@ -128,7 +144,12 @@ var grab = function(userInput, object) {
   if (!article) {
     return "What are you trying to grab?";
   } else if (article === "key") {
-    return "You grab the key and your heart fills with glee. You realize that their might be a way out of this awful room.";
+    if (!object.locked) {
+    inventory.push("key");
+    return "You grab the key and your heart fills with glee. You realize that there might be a way out of this awful room.";
+  } else {
+    return "You can't grab that!"
+  }
   }else if (article === "blood") {
     return "Now the blood is on your hands. I hope the cops don't show up.";
   } else {
@@ -145,7 +166,7 @@ var grab = function(userInput, object) {
 $(document).ready(function() {
   var door = new Door();
   var box = new Box();
-  var keypad = new KeyPad();
+  // var keypad = new KeyPad();
   var paper = new Paper();
   $("#formInput").submit(function(event){
     event.preventDefault();
@@ -177,11 +198,9 @@ $(document).ready(function() {
         // response = use(userText);
         if (userTextArr[1] === 'door') {
           response = use(userText, door);
-        }else if (userTextArr[1] === 'box') {
+        }else if (userTextArr[1] === 'box' || userTextArr[1] === 'keypad') {
           response = use(userText, box);
-        } else if (userTextArr[1] === 'keypad') {
-          response = use(userText, keypad);
-        }else {
+        } else {
           response = use(userText);
         }
         break;
@@ -192,23 +211,25 @@ $(document).ready(function() {
           response = grab(userText, box);
         } else if (userTextArr[1] === 'keypad') {
           response = grab(userText, keypad);
-        }else if (userTextArr[1] === 'paper') {
+        } else if (userTextArr[1] === 'paper') {
           response = grab(userText, paper);
+        } else if (userTextArr[1] === 'key') {
+          response = grab(userText, box);
         } else {
           response = grab(userText);
         }
         break;
       case "inspect":
         if (userTextArr[1] === 'door') {
-          response = grab(userText, door);
+          response = inspect(userText, door);
         }else if (userTextArr[1] === 'box') {
-          response = grab(userText, box);
+          response = inspect(userText, box);
         } else if (userTextArr[1] === 'keypad') {
-          response = grab(userText, keypad);
+          response = inspect(userText, keypad);
         }else if (userTextArr[1] === 'paper') {
-          response = grab(userText, paper);
+          response = inspect(userText, paper);
         } else {
-          response = grab(userText);
+          response = inspect(userText);
         }
         break;
       default:

@@ -51,7 +51,7 @@ ul {
   padding-top: 25px;
   border: 1px solid black;
   color: darkred;
-  background-image: url("../img/glowingKey.jpeg");
+  /*background-image: url("../img/glowingKey.jpeg");*/
   background-repeat:no-repeat;
   background-position: bottom;;
 }
