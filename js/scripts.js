@@ -14,14 +14,16 @@ function Room () {
 function Door() {
   this.locked = true;
 }
-
 function Box() {
   this.locked = true;
 }
 function KeyPad() {
   this.passcode = "hello world";
 }
-
+function Paper(){
+  this.anagram = "howled roll";
+  this.message = "My fondest moment as a programmer was my first website and it said '" + this.anagram + "'......I think, but that's probably not right";
+}
 var userInteraction = function(input, room) {
   switch(input) {
     case "help":
@@ -92,11 +94,13 @@ var use = function(userInput, object) {
   }
 }
 
-var inspect = function(article = '') {
+var inspect = function(userInput, object) {
+  var userInputArr = userInput.split(' ');
+  var article = userInputArr[1];
   if (!article) {
     return "What would you like to inspect?";
   } else {
-    if (article === 'door') {
+    if (object instanceof Door) {
       if (nokey) {
         return "The door appears to be locked.";
       } else {
@@ -118,11 +122,23 @@ var inspect = function(article = '') {
   }
 }
 
-var grab = function(article = '') {
+var grab = function(userInput, object) {
+  var userInputArr = userInput.split(' ');
+  var article = userInputArr[1];
   if (!article) {
     return "What are you trying to grab?";
+  } else if (article === "key") {
+    return "You grab the key and your heart fills with glee. You realize that their might be a way out of this awful room.";
+  }else if (article === "blood") {
+    return "Now the blood is on your hands. I hope the cops don't show up.";
   } else {
-
+    if (object instanceof Paper) {
+      return "The paper is smeared with blood. You look closer and see a message that says, '" + object.message + " '";
+    } else if (object instanceof Box) {
+      return "The box is bolted to the ground";
+    }else {
+      return "You cant grab that!";
+    }
   }
 }
 //User Interface Logic
@@ -130,6 +146,7 @@ $(document).ready(function() {
   var door = new Door();
   var box = new Box();
   var keypad = new KeyPad();
+  var paper = new Paper();
   $("#formInput").submit(function(event){
     event.preventDefault();
     //debugger;
@@ -157,7 +174,7 @@ $(document).ready(function() {
         }
         break;
       case "use":
-        response = use(userText);
+        // response = use(userText);
         if (userTextArr[1] === 'door') {
           response = use(userText, door);
         }else if (userTextArr[1] === 'box') {
@@ -168,12 +185,32 @@ $(document).ready(function() {
           response = use(userText);
         }
         break;
-      // case "grab":
-      //   response =  userInteraction(userText, room);
-      //   break;
-      // case "inspect":
-      //   response =  userInteraction(userText, room);
-      //   break;
+      case "grab":
+        if (userTextArr[1] === 'door') {
+          response = grab(userText, door);
+        }else if (userTextArr[1] === 'box') {
+          response = grab(userText, box);
+        } else if (userTextArr[1] === 'keypad') {
+          response = grab(userText, keypad);
+        }else if (userTextArr[1] === 'paper') {
+          response = grab(userText, paper);
+        } else {
+          response = grab(userText);
+        }
+        break;
+      case "inspect":
+        if (userTextArr[1] === 'door') {
+          response = grab(userText, door);
+        }else if (userTextArr[1] === 'box') {
+          response = grab(userText, box);
+        } else if (userTextArr[1] === 'keypad') {
+          response = grab(userText, keypad);
+        }else if (userTextArr[1] === 'paper') {
+          response = grab(userText, paper);
+        } else {
+          response = grab(userText);
+        }
+        break;
       default:
     }
     // if (userText === "help" || userText === "look") {
