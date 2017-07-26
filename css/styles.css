@@ -4,6 +4,7 @@ body {
   background-image: url("/Users/Guest/Desktop/text-adventure/img/Haunted_House.jpg");
   background-position: top;
   background-size: cover;
+
 }
 
 .container {
@@ -49,6 +50,18 @@ ul {
   height: 800px;
   padding-top: 25px;
   border: 1px solid black;
+  color: darkred;
+  /*background-image: url("../img/glowingKey.jpeg");*/
+  background-repeat:no-repeat;
+  background-position: bottom;;
+}
+#mainSection {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  background-color:  #330000;
+  padding: 10px;
+  border-radius: 20px;
 
 }
 /*#help {
