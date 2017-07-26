@@ -211,9 +211,9 @@ $(document).ready(function() {
     var response;
     //debugger;
     switch (userTextArr[0]) {
-      case "help":
-        response =  userInteraction(userText, room);
-        break;
+      // case "help":
+      //   response =  userInteraction(userText, room);
+      //   break;
       case "look":
         response =  userInteraction(userText, room);
         break;

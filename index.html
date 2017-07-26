@@ -23,15 +23,29 @@
       </div>
       <div class="row">
         <!--Inventory Sidebar -->
-        <div class="col-sm-2 sidebar">
-          <h3>Inventory</h3>
-          <ul id="sidebar">
+        <div class="col-sm-3 sidebar">
+          <div class="row inventory">
+            <div class="col-md-12">
+              <h3>Inventory</h3>
+              <ul id="sidebar">
 
-          </ul>
+              </ul>
+            </div>
+          </div>
+          <div class="row help-menu">
+            <div class="col-md-12">
+              "<h3>Commands for House Escape:</h3>
+                <p><strong>look</strong> = look around the room</p>
+                <p><strong>open + object</strong>= attempt to open the object</p>
+                <p><strong>use + object</strong> = interact with the object in the room or inventory</p>
+                <p><strong>rab + object</strong> = attempt to grab the object</p>
+                <p><strong>inspect + object</strong> = obtain further details about the object</p>
+            </div>
+          </div>
         </div>
         <!-- Main Section -->
-        <div class="col-sm-10 main-section">
-          <p id="game-header">You wake up in an unfamiliar room on the floor. Gazing up at the ceiliing you notice a message written in blood - "Type 'help' to see commands". You consider it as you stand up.</p>
+        <div class="col-sm-9 main-section">
+          <p id="game-header">You wake up in an unfamiliar room on the floor. Gazing up at the ceiliing you notice a message written in blood - refer the help menu to see the available commands". You consider it as you stand up.</p>
         </div>
       </div>
       <!-- Input Area -->
@@ -39,9 +53,9 @@
         <div class="col-sm-12 userInput">
           <form id="formInput">
             <div class="form-group">
-              <h3>Type your commands here:</h3>
-              <input type="text" id="inputArea" class="form-control">
-              <button type="submit" class="btn" id="formSubmit">submit</button>
+              <input type="text" id="inputArea">
+              <h2>Type your commands here:</h2>
+              <!-- <button type="submit" class="btn" id="formSubmit">submit</button> -->
             </div>
           </form>
         </div>
