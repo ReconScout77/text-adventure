@@ -117,7 +117,7 @@ var inspect = function(userInput, object) {
     return "What would you like to inspect?";
   } else {
     if (object instanceof Door) {
-      if (nokey) {
+      if (inventory[0] === 'key') {
         return "The door appears to be locked.";
       } else {
         return "Maybe you should unlock this door.";
