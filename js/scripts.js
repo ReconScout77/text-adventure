@@ -43,22 +43,22 @@ var look = function(room) {
 }
 
 var open = function(userInput, object) {
-  debugger;
+  //debugger;
   var userInputArr = userInput.split(' ');
   var article = userInputArr [1];
   if (!article) {
     return "What are you trying to open?";
-  } else {
+  }else if (article === 'key') {
+  	return 'Keys are for opening things not the other way around.';
+  }else {
     if (object instanceof Door) {
       if (object.locked) {
         return "You try vigorously to get out but the door seems to be locked. Your mind starts to race.";
       } else {
         return "Congratulations!!! You open the door and step into a dark room that smells of fragrant cheese. The door slams shut behind you.";
       }
-    } else if (article === 'box') {
+    } else if (object instanceof Box) {
       return 'The box is locked but you see that it has an alphanumeric keypad.';
-    } else if (article === 'key') {
-      	return 'Keys are for opening things not the other way around.';
     } else {
       return "You can't open that...";
     }
@@ -124,12 +124,13 @@ var grab = function(article = '') {
 $(document).ready(function() {
   $("#formInput").submit(function(event){
     event.preventDefault();
-    debugger;
+    //debugger;
     var room = new Room();
     var userText = $("#inputArea").val()
     var userTextArr = userText.split(' ');
     var response;
     var door;
+    var box;
     //debugger;
     switch (userTextArr[0]) {
       case "help":
@@ -143,10 +144,12 @@ $(document).ready(function() {
           door = new Door();
           response = open(userText, door);
           break;
-        }else {
+        }else if (userTextArr[1] === 'box') {
+          box = new Box();
+          response = open(userText, box);
+        } else {
           response = open(userText, door);
         }
-
       // case "use":
       //   response =  userInteraction(userText, room);
       //   break;
@@ -166,6 +169,7 @@ $(document).ready(function() {
     //
     // }
     $(".mainSection").append(response + "<br>");
+     $("#inputArea").val('');
     $('.mainSection').animate({scrollTop: $('.mainSection').prop("scrollHeight")}, 5);
   });
 });
