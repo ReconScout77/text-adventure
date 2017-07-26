@@ -22,30 +22,50 @@ body {
 }
 
 /* HEADER SECTION */
-.header {
+/*.header {
   text-align: center;
+<<<<<<< HEAD
   border: 2px solid white;
   color: #FFFFFF;
   background-image: url("/Users/Guest/Desktop/text-adventure/img/haunted2.jpg");
   background-position: bottom;
   background-size: cover;
 }
-h1 {
+=======*/
+  /*border: 1px solid black;*/
+  /*color: white;
+  background-image: url("../img/haunted2.jpg");
+  background-position: bottom;
+  background-size: cover;
+}*/
+.help-menu {
+  /*border: 1px solid black;*/
+  height: 400px;
+  text-align: left;
+}
+.inventory{
+  /*border: 1px solid black;*/
+  height: 300px;
+}
+#helpCommand, #inventory-text{
+  color: #963b3b;
+}
+
+/*h1 {
   font-size: 4em;
   letter-spacing: 8px;
-}
+}*/
 
 /* INVENTORY / SIDEBAR */
 
 .sidebar {
+
   min-height: 800px;
   border: 2px solid white;
   text-align: center;
   background-color: white;
-  font-size: 24px;
+  font-size: 15px;
   border-radius: 10px;
-  margin-right: 5%;
-  margin-left: 2%;
   color: #963b3b
 }
 
@@ -71,6 +91,14 @@ ul {
   border-radius: 10px;
   background-color: white;
   font-size:18px;
+  /*height: 700px;
+  padding-top: 25px;*/
+  /*border: 1px solid black;*/
+  /*color: #00cc00;
+  font-weight: bolder;*/
+  /*background-image: url("../img/glowingKey.jpeg");*/
+  /*background-repeat:no-repeat;
+  background-position: center;*/
 }
 #game-header {
   color: white;
@@ -88,6 +116,7 @@ ul {
 /* USER INPUT AREA */
 
 .userInput {
+
   border: 2px solid white;
   text-align: center;
   background-color: white;
@@ -97,6 +126,7 @@ ul {
   margin-left: -48px;
   margin-top: 2%;
   color: #963b3b
+
 }
 
 .userInput h3{

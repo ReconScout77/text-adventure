@@ -280,4 +280,8 @@ $(document).ready(function() {
      $("#inputArea").val('');
     $('.main-section').animate({scrollTop: $('.main-section').prop("scrollHeight")}, 5);
   });
+
+  $("#helpCommand").click(function() {
+   $(".help-menu").slideToggle("slow");
+ });
 });
