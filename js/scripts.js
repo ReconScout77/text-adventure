@@ -212,6 +212,8 @@ $(document).ready(function() {
         }
         break;
       default:
+        response = "There is no much fun in this room, you better find your way out soon!";
+        break;
     }
     // if (userText === "help" || userText === "look") {
     //   $(".mainSection").append(response);
