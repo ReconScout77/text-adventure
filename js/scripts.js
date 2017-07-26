@@ -134,15 +134,21 @@ var inspect = function(userInput, object) {
     } else if (article === 'hole' || article === 'wall') {
       return "You peer in the hole and see a small piece of paper.";
     } else if (article === 'paper') {
-      return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said 'HoWled roll'......I think, but that's probably not right.\"";
+      return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said 'HoWled roll'......I think, but that's probably not right. I may have mixed up the order of the letters..\"";
     } else if (article === 'box') {
-      return "The box seems to be locked and made of industry-grade stainless steel with an alphanumeric digital keypad on the side and some text on the side that says, 'To see what's inside this box you must know what all first websites have in common.'";
+      if (!object.locked) {
+        return "The box is open.";
+      } else {
+        return "The box seems to be locked and made of industry-grade stainless steel with an alphanumeric digital keypad on the side. Perhaps there is a clue somewhere around the room...";
+      }
     } else if (article === 'key') {
-      if (!box.locked) {
+      if (!object.locked) {
         return "This key looks like it was made for a door. Try opening one.";
       } else {
         return "You can't see any such object."
       }
+    } else if (article === 'keypad') {
+        return "It appears to be a keypad that you can enter a password into. Perhaps you could try using it.";
     } else {
       return "You can't see any such object.";
     }
@@ -169,7 +175,7 @@ var grab = function(userInput, object) {
     return "Now the blood is on your hands. I hope the cops don't show up.";
   } else {
     if (object instanceof Paper) {
-      return "The paper is smeared with blood. You look closer and see a message that says, '" + object.message + " '";
+      return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said 'HoWled roll'......I think, but that's probably not right. I may have mixed up the order of the letters..\"";
     } else if (object instanceof Box) {
       return "The box is bolted to the ground";
     }else {
@@ -180,6 +186,7 @@ var grab = function(userInput, object) {
 
 //User Interface Logic
 $(document).ready(function() {
+  $("#inputArea").focus();
   var door = new Door();
   var box = new Box();
   // var keypad = new KeyPad();
@@ -197,7 +204,11 @@ $(document).ready(function() {
         response =  userInteraction(userText, room);
         break;
       case "look":
-        response =  userInteraction(userText, room);
+        if (userTextArr.length > 1) {
+          response = 'Did you mean inspect?';
+        } else {
+          response =  userInteraction(userText, room);
+        }
         break;
       case "open":
         if (userTextArr[1] === 'door') {
@@ -241,15 +252,17 @@ $(document).ready(function() {
         }else if (userTextArr[1] === 'box') {
           response = inspect(userText, box);
         } else if (userTextArr[1] === 'keypad') {
-          response = inspect(userText, keypad);
+          response = inspect(userText, box);
         }else if (userTextArr[1] === 'paper') {
           response = inspect(userText, paper);
+        } else if (userTextArr[1] === 'key') {
+          response = inspect(userText, box);
         } else {
           response = inspect(userText);
         }
         break;
       default:
-        response = "";
+        response = "That's not a command I recognize.";
         break;
     }
     // if (userText === "help" || userText === "look") {
@@ -259,6 +272,7 @@ $(document).ready(function() {
     //   $(".mainSection").append(response);
     //
     // }
+    $(".main-section").append('<p><span class="userTextOutput">>' + userText + '</span></p>');
     $(".main-section").append('<p>' + response + '</p>');
     $("#sidebar").text(inventory[0]);
 

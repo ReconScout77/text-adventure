@@ -62,8 +62,12 @@ ul {
   background-color:  #330000;
   padding: 10px;
   border-radius: 20px;
-
 }
+
+.userTextOutput {
+  color: black;
+}
+
 /*#help {
   display: none;
 }*/
