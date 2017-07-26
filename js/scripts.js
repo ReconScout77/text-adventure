@@ -8,7 +8,14 @@ function Room () {
   var door = new Door(true);
   var box = new Box(true);
   this.objects = [door, box];
+}
 
+Room.prototype.roomDesc = function() {
+  if (this.roomNumber === 1) {
+    return "You see a door, a stainless steel box, and a trail of blood.";
+  } else if (this.roomNumber === 2) {
+      return "You see four buttons, one in the north, one in the east, one in the south, and one in the west. You also notice an etching in the middle of the room."
+    }
 }
 
 function Door() {
@@ -252,8 +259,11 @@ $(document).ready(function() {
     //   $(".mainSection").append(response);
     //
     // }
-    $(".mainSection").append(response + "<br>");
+    $(".main-section").append('<p>' + response + '</p>');
+    $("#sidebar").text(inventory[0]);
+
+    sidebar
      $("#inputArea").val('');
-    $('.mainSection').animate({scrollTop: $('.mainSection').prop("scrollHeight")}, 5);
+    $('.main-section').animate({scrollTop: $('.main-section').prop("scrollHeight")}, 5);
   });
 });
