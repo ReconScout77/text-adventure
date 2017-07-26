@@ -42,6 +42,24 @@ _This is a text based game whose objective is solving puzzles to scape from the 
 | User types "inspect key"| `inspect key` | This key looks like it was made for a door. Try opening one.|
 | User types "open key"| `open key` | Keys are for opening things not the other way around.|
 | User types "open door" with key in inventory |` open door `| Congratulations you open the door and step into a dark room that smells of fragrant cheese and the door slams shut behind you|
+| User types "look" in room 2 |` look `| You see four buttons, one in the north, one in the east, one in the south, and one in the west. You also notice an etching in the middle of the room.|
+| User types inspect north |` inspect north `| Upon getting close to the button, you hear a faint crackling noise. You start to feel uncomfortably hot. |
+| User types inspect east |` inspect east `| Upon getting close to the button you smell fresh soil. The button feels especially firm. |
+| User types inspect south |` inspect south `| As you reach the button you hear a babbling brook. Your hair and clothes start to dampen. |
+| User types inspect west |` inspect west `| As you reach the button you feel a slight breeze brush against your face. |
+| User types inspect button |` inspect button `| Which button are you trying to inspect? (NESW) |
+| User types inspect etching |` inspect etching `| You can make out 4 letters on the ground: "F A W E" |
+| User types use north or north button|` use north or use north button`| You press in the button. |
+| User types use east or east button |` use east or use east button `|  You press in the button. |
+| User types use south or south button |` use south or use south button `|  You press in the button. |
+| User types use west or west button |` use west or use west button `|  You press in the button. |
+| User uses a button && its not the last(4th) button pressed |` use button X `|  The button stays in. |
+| User uses a button && it is the last(4th) button pressed && the order is incorrect|` use button X `|  As you as you press in the button, all the buttons pop out. Clearly you are doing something wrong.. |
+| User uses a button && it is the last(4th) button pressed && the order is correct|` use button X `|  As you as you press in the last button, the eastern wall opens and you see a bright light shimmering through. |
+| User types inspect light |` inspect light `| You make your way through the wall and into the light... |
+
+
+
 
 
 
