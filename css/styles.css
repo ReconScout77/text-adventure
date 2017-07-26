@@ -44,7 +44,7 @@ ul {
 
 /* MAIN SECTION / TEXT OUPUT */
 
-.mainSection {
+.main-section {
 
   overflow-y: scroll;
   height: 800px;
@@ -55,7 +55,7 @@ ul {
   background-repeat:no-repeat;
   background-position: bottom;;
 }
-#mainSection {
+#game-header {
   color: white;
   font-size: 20px;
   text-align: center;
