@@ -18,6 +18,9 @@ function Door() {
 function Box() {
   this.locked = true;
 }
+function KeyPad() {
+  this.passcode = "hello world";
+}
 
 var userInteraction = function(input, room) {
   switch(input) {
@@ -65,19 +68,21 @@ var open = function(userInput, object) {
   }
 }
 
-var use = function(article = '') {
+var use = function(userInput, object) {
+  var userInputArr = userInput.split(' ');
+  var article = userInputArr[1];
   if (!article) {
     return "What are you trying to use?";
-  } else if (article === 'door') {
+  } else if (object instanceof Door) {
     return "What the heck do you mean 'use' door? Did you mean 'open door'?";
-  } else if (article === 'box') {
+  } else if (object instanceof Box) {
     return "How do you intend to use the box? It's a box that is yearning to be opened.";
   } else if (article === 'key') {
     return "This key looks like it was made for a door. Try opening one."
-  } else if (article === 'keypad'){
+  } else if (object instanceof KeyPad){
     var enterPasscode = prompt("Please enter the passcode:");
-    if (enterPasscode.toLowerCase() === "hello world") {
-      box.locked = false;
+    if (enterPasscode.toLowerCase() === object.passcode) {
+      object.locked = false;
       return "You hear a click and the box creaks open. A key glows from the bottom of the box."
     } else {
       return "A message populates the LCD screen on the keypad saying 'Incorrect passcode, please try again'"
@@ -122,6 +127,9 @@ var grab = function(article = '') {
 }
 //User Interface Logic
 $(document).ready(function() {
+  var door = new Door();
+  var box = new Box();
+  var keypad = new KeyPad();
   $("#formInput").submit(function(event){
     event.preventDefault();
     //debugger;
@@ -129,8 +137,6 @@ $(document).ready(function() {
     var userText = $("#inputArea").val()
     var userTextArr = userText.split(' ');
     var response;
-    var door;
-    var box;
     //debugger;
     switch (userTextArr[0]) {
       case "help":
@@ -141,18 +147,27 @@ $(document).ready(function() {
         break;
       case "open":
         if (userTextArr[1] === 'door') {
-          door = new Door();
+          // door = new Door();
           response = open(userText, door);
-          break;
         }else if (userTextArr[1] === 'box') {
-          box = new Box();
+          // box = new Box();
           response = open(userText, box);
         } else {
-          response = open(userText, door);
+          response = open(userText);
         }
-      // case "use":
-      //   response =  userInteraction(userText, room);
-      //   break;
+        break;
+      case "use":
+        response = use(userText);
+        if (userTextArr[1] === 'door') {
+          response = use(userText, door);
+        }else if (userTextArr[1] === 'box') {
+          response = use(userText, box);
+        } else if (userTextArr[1] === 'keypad') {
+          response = use(userText, keypad);
+        }else {
+          response = use(userText);
+        }
+        break;
       // case "grab":
       //   response =  userInteraction(userText, room);
       //   break;
