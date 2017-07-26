@@ -242,7 +242,7 @@ $(document).ready(function() {
         }
         break;
       default:
-        response = "There is no much fun in this room, you better find your way out soon!";
+        response = "";
         break;
     }
     // if (userText === "help" || userText === "look") {
