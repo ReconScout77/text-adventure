@@ -1,7 +1,7 @@
 body {
   font-family: "Artifika";
   font-size: 15px;
-  background-image: url("/Users/Guest/Desktop/text-adventure/img/Haunted_House.jpg");
+  background-image: url("../img/Haunted_House.jpg");
   background-position: top;
   background-size: cover;
 
@@ -17,10 +17,19 @@ body {
 .header {
   text-align: center;
   border: 1px solid black;
-  color: #FFFFFF;
-  background-image: url("/Users/Guest/Desktop/text-adventure/img/haunted2.jpg");
+  color: white;
+  background-image: url("../img/haunted2.jpg");
   background-position: bottom;
   background-size: cover;
+}
+.help-menu {
+  border: 1px solid black;
+  height: 400px;
+  text-align: left;
+}
+.inventory{
+  border: 1px solid black;
+  height: 300px;
 }
 h1 {
   font-size: 4em;
@@ -30,7 +39,7 @@ h1 {
 /* INVENTORY / SIDEBAR */
 
 .sidebar {
-  min-height: 800px;
+  min-height: 700px;
   border: 1px solid black;
   text-align: center;
   background-color:
@@ -45,9 +54,8 @@ ul {
 /* MAIN SECTION / TEXT OUPUT */
 
 .main-section {
-
   overflow-y: scroll;
-  height: 800px;
+  height: 700px;
   padding-top: 25px;
   border: 1px solid black;
   color: darkred;
@@ -73,8 +81,17 @@ ul {
 .userInput {
   border: 1px solid black;
   text-align: center;
-  background-color:
-  font-size: 25px;
+  font-size: 15px;
+  /*margin-bottom: 10px;*/
+  background-image: url("../img/1.jpg");
+  /*background-image: url("../img/moon.jpg");
+*/
+  background-position: top;
+  background-size: cover;
+
+}
+.userInput h2{
+  color: white;
 }
 
 #inputArea {
