@@ -26,8 +26,66 @@ function Wall () {
   this.wallOpen = false;
 }
 
+var buttonPress =  function(direction) {
+  switch(direction) {
+    case 'north':
+      northButton = true;
+      break;
+    case 'east':
+      eastButton = true;
+      break;
+    case 'south':
+      southButton = true;
+      break;
+    case 'west':
+      westButton = true;
+      break;
+  }
+  buttonOrder.push(direction);
+  "You press the button.";
+  if (buttonOrder.length === 4) {
+    return checkOrder();
+  } else {
+    "The button stays in.";
+  }
+}
 
+// use north {
+//   northButton = true;
+//   buttonOrder.push("north");
+// }
+// use south {
+//   southButton = true;
+//   buttonOrder.push("south");
+// }
+// use east {
+//   eastButton = true;
+//   buttonOrder.push("east");
+// }
+// use west {
+//   westButton = true;
+//   buttonOrder.push("west");
+//   "You press the button."
+//   if (buttonOrder.length === 4) {
+//     return checkOrder()
+//   } else {
+//     "The button stays in."
+//   }
+// }
 
+var checkOrder = function(room) {
+    for (var i = 0; i < 4; i++) {
+      if (buttonOrder[i] != correctOrder[i]) {
+        northButton = false;
+        southButton = false;
+        eastButton = false;
+        westButton = false;
+        buttonOrder = [];
+        return "As you as you press in the button, all the buttons pop out. Clearly you are doing something wrong...";
+      }
+    }
+    return "As you as you press in the last button, the northwestern wall opens and you see a bright light shimmering through.";
+}
 // Room.prototype.roomDesc = function() {
 //   if (this.roomNumber === 1) {
 //     return "You see a door, a stainless steel box, and a trail of blood.";
@@ -84,6 +142,7 @@ var open = function(userInput, object) {
   } else {
     if (object instanceof Door) {
       if (inventory[0] === "key") {
+        room = new Room2();
         return "Congratulations!!! You open the door and step into a dark room that smells of fragrant cheese. The door slams shut behind you.";
       } else {
       return "You try vigorously to get out but the door seems to be locked. Your mind starts to race.";
@@ -234,7 +293,11 @@ $(document).ready(function() {
           response = use(userText, door);
         }else if (userTextArr[1] === 'box' || userTextArr[1] === 'keypad') {
           response = use(userText, box);
-        } else {
+        }else if (userTextArr[1] === 'north' || userTextArr[1] === 'east' || userTextArr[1] === 'south' || userTextArr[1] === 'west' ) {
+          response = buttonPress(userTextArr[1]);
+        }else if (userTextArr[1] === 'button') {
+          response = "Which button do you want to press?";
+        }else {
           response = use(userText);
         }
         break;
