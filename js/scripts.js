@@ -200,9 +200,9 @@ $(document).ready(function() {
     var response;
     //debugger;
     switch (userTextArr[0]) {
-      case "help":
-        response =  userInteraction(userText, room);
-        break;
+      // case "help":
+      //   response =  userInteraction(userText, room);
+      //   break;
       case "look":
         if (userTextArr.length > 1) {
           response = 'Did you mean inspect?';
