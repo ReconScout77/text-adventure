@@ -23,10 +23,8 @@ var userInteraction = function(input, room) {
   switch(input) {
     case "help":
      return showHelp();
-      // $(".mainSection").append(showHelp());
       break;
     case "look" || "look around":
-      // $(".mainSection").append(look(room));
       return look(room);
   };
 }
@@ -38,19 +36,9 @@ var showHelp = function() {
       "<p>use + object = interact with the object in the room or inventory</p>" +
       "<p>grab + object = attempt to grab the object</p>" +
       "<p>inspect + object = obtain further details about the object</p>";
-
 }
 
 var look = function(room) {
-  // var returnStr = 'You see ';
-  // room.objects.forEach(object, index) {
-  //   if (index === objects.length - 1) {
-  //     returnStr+= "and " + object + ".";
-  //   } else {
-  //     returnStr+= object + ", "
-  //   }
-  // }
-
   return room.look;
 }
 
@@ -136,12 +124,19 @@ $(document).ready(function() {
     var room = new Room();
     var userText = $("#inputArea").val()
     var response =  userInteraction(userText, room);
-    $(".mainSection").append(response);
+    if (userText === "help" || userText === "look") {
+      $(".mainSection").append(response);
+      $('.mainSection').animate({scrollTop: $('.mainSection').prop("scrollHeight")}, 5);
+    }else if (userText === "open" || userText === "open door") {
+
+    }
+    //$("html, body").animate({ scrollTop: $(document).height()});
+    //this functionality fails after some iteration
     // switch(userText) {
     //   case "help":
     //   userInteraction("help" or "look");
     //     // $(".mainSection").append(showHelp());
-    //     $(".mainSection").animate({ scrollTop: $(document).height() });//this functionality fails after some iteration
+    //
     //     break;
     //   case "open":
     //     $(".mainSection").append("What are you trying to open?");
