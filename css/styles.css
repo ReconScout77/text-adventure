@@ -41,8 +41,18 @@ body {
 .help-menu {
   /*border: 1px solid black;*/
   height: 400px;
-  text-align: left;
+  text-align: center;
+  margin-top: 37%;
 }
+
+.help-menu h3 {
+    padding-bottom: 10%;
+}
+
+.help-menu h4 {
+    padding: 2%;
+}
+
 .inventory{
   /*border: 1px solid black;*/
   height: 300px;
@@ -59,14 +69,18 @@ body {
 /* INVENTORY / SIDEBAR */
 
 .sidebar {
-
   min-height: 800px;
-  border: 2px solid white;
   text-align: center;
   background-color: white;
   font-size: 15px;
+  color: rgb(150, 59, 59);
+  margin-left: 2em;
+  margin-right: 3%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
+  border-image: initial;
   border-radius: 10px;
-  color: #963b3b
 }
 
 
@@ -79,18 +93,19 @@ ul {
 /* MAIN SECTION / TEXT OUPUT */
 
 .main-section {
-
-  overflow-y: scroll;
-  height: 800px;
-  padding-top: 10px;
-  border: 2px solid white;
-  color: #963b3b;
-  /*background-image: url("../img/glowingKey.jpeg");*/
-  background-repeat:no-repeat;
-  background-position: bottom;;
-  border-radius: 10px;
-  background-color: white;
-  font-size:18px;
+    overflow-y: scroll;
+    height: 757px;
+    padding-top: 10px;
+    color: rgb(150, 59, 59);
+    background-color: white;
+    font-size: 18px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    border-image: initial;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    border-radius: 10px;
   /*height: 700px;
   padding-top: 25px;*/
   /*border: 1px solid black;*/
@@ -135,11 +150,27 @@ ul {
 
 #inputArea {
   margin-top: 10px;
+  margin-left: -16px;
+  width: 782px;
 }
 
 #formSubmit {
   display:none;
 }
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
 
 #style-1::-webkit-scrollbar-track
 {
