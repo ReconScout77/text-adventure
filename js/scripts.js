@@ -216,8 +216,11 @@ var inspect = function(userInput, object) {
         return 'As you reach the button you feel a slight breeze brush against your face.';
     } else if (article === 'etching') {
         return 'You can make out 4 letters on the ground: "F A W E"';
-    } else if (article === 'light' && wall.wallOpen) {
+    } else if (article === 'button') {
+        return 'Which button do you want to inspect?';
+    }else if (article === 'light' && wall.wallOpen) {
         $(".main-section").text('');
+        $(".main-section").append('<img src="img/Endgame.jpg">');
         return 'You make your way through the wall and into the light...';
     } else {
         return "You can't see any such object.";
@@ -282,7 +285,7 @@ var grab = function(userInput, object) {
     }
   }
 }
-var room = new Room2();
+var room = new Room();
 //User Interface Logic
 $(document).ready(function() {
   $("#inputArea").focus();

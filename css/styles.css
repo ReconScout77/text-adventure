@@ -13,6 +13,7 @@ body {
   background-color: white;
 }
 
+
 /* HEADER SECTION */
 .header {
   text-align: center;
@@ -75,7 +76,9 @@ ul {
 .userTextOutput {
   color: black;
 }
-
+img {
+  align-content: center;
+}
 /*#help {
   display: none;
 }*/
