@@ -124,6 +124,9 @@ var userInteraction = function(input, room) {
     case "look around":
       return look(room);
       break;
+    case "look room":
+      return look(room);
+      break;
     default:
       return "Do you mean inspect?"
       break;
