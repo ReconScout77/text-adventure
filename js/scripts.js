@@ -5,7 +5,7 @@ var inventory = [];
 
 function Room () {
   this.roomNumber = 1;
-  this.look = "You see a door, a stainless steel box, and a trail of blood.";
+  this.look = "You see a door, a box made of stainless steel, and a trail of blood.";
 }
 
 function Room2 () {
@@ -97,6 +97,7 @@ var checkOrder = function(room) {
       }
     }
     wall.wallOpen = true;
+    $(".light").show();
     return "As soon as you press in the last button, the northwestern wall opens and you see a bright light shimmering through.";
 }
 
@@ -141,6 +142,12 @@ var showHelp = function() {
 }
 
 var look = function(room) {
+  if (room.roomNumber === 2) {
+    $(".room2-thing").show();
+  } else {
+    $(".room-2-show").hide();
+    $(".room-1-show").show();
+  }
   return room.look;
 }
 
@@ -194,6 +201,7 @@ var use = function(userInput, object) {
       var enterPasscode = prompt("Please enter the passcode:");
       if (enterPasscode.toLowerCase() === object.passcode) {
         object.locked = false;
+        $(".key").show();
         return "You hear a click and the box creaks open. A key glows from the bottom of the box."
       } else {
         return "Incorrect passcode, please try again"
@@ -237,7 +245,7 @@ var inspect = function(userInput, object) {
     }else if (article === 'light' && wall.wallOpen) {
         $(".main-section").text('');
         // $(".main-section").append('<img src="img/Endgame.jpg">');
-        return 'Congratulations!!!You make your way through the wall and into the light...';
+        return 'Congratulations!!! You make your way through the wall and into the light...';
     } else {
         return "You can't see any such object.";
     }
@@ -249,16 +257,19 @@ var inspect = function(userInput, object) {
         return "Maybe you should unlock this door.";
       }
   } else if (article === 'blood') {
+    $(".hole").show();
     return "The blood on the ground leads to a hole in the wall.";
   } else if (article === 'hole' || article === 'wall') {
+    $(".paper").show();
     return "You peer in the hole and see a small piece of paper.";
   } else if (article === 'paper') {
-    return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said 'HoWled roll'......I think, but that's probably not right. I may have mixed up the order of the letters..\"";
+    return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said <em>'HoWled roll'</em>......I think, but that's probably not right. I may have mixed up the order of the letters..\"";
   } else if (article === 'box') {
     if (!object.locked) {
       return "The box is open.";
     } else {
-      return "The box seems to be locked and made of industry-grade stainless steel with an alphanumeric digital keypad on the side. Perhaps there is a clue somewhere around the room...";
+      $(".keypad").show();
+      return "The box seems to be locked and made of industry-grade stainless steel with an alphanumeric digital keypad on the side. On the side of the box is says,\"Tell me a greeting to the universe that most first programs say.\"";
     }
   } else if (article === 'key') {
     if (!object.locked) {
@@ -299,7 +310,7 @@ var grab = function(userInput, object) {
     return "Now the blood is on your hands. I hope the cops don't show up.";
   } else {
     if (object instanceof Paper) {
-      return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said 'HoWled roll'......I think, but that's probably not right. I may have mixed up the order of the letters..\"";
+      return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said <em>'HoWled roll'</em>......I think, but that's probably not right. I may have mixed up the order of the letters..\"";
     } else if (object instanceof Box) {
       return "The box is bolted to the ground";
     }else {
@@ -323,13 +334,6 @@ $(document).ready(function() {
     var userTextArr = userText.split(' ');
     var response;
 
-    if (room.roomNumber === 2) {
-      $(".room-2-show").show();
-      $(".room-1-show").hide();
-    } else {
-      $(".room-2-show").hide();
-      $(".room-1-show").show();
-    }
 
 
     //debugger;
@@ -415,8 +419,4 @@ $(document).ready(function() {
      $("#inputArea").val('');
     $('.main-section').animate({scrollTop: $('.main-section').prop("scrollHeight")}, 5);
   });
-
-  $("#helpCommand").click(function() {
-   $(".help-menu").slideToggle("slow");
- });
 });
