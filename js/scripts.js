@@ -158,6 +158,8 @@ var open = function(userInput, object) {
     if (object instanceof Door) {
       if (inventory[0] === "key") {
         room = new Room2();
+        $(".room-2-show").show();
+        $(".room-1-show").hide();
         $(".outputArea").text('');
         $("#game-header").fadeOut();
         $("#game-header").text('You open the door and step into a dark room that smells of pungent cheese. The door slams shut behind you and disappears into the wall.')
