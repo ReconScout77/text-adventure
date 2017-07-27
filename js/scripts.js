@@ -154,7 +154,11 @@ var open = function(userInput, object) {
     if (object instanceof Door) {
       if (inventory[0] === "key") {
         room = new Room2();
-        return "You open the door and step into a dark room that smells of pungent cheese. The door slams shut behind you and disappears into the wall. You're now in room 2 trying to <code>look</code> around";
+        $(".outputArea").text('');
+        $("#game-header").fadeOut();
+        $("#game-header").text('You open the door and step into a dark room that smells of pungent cheese. The door slams shut behind you and disappears into the wall.')
+        $("#game-header").fadeIn();
+        return "What is your next step?";
       } else {
       return "You try vigorously to get out but the door seems to be locked. Your mind starts to race.";
       }
@@ -388,8 +392,8 @@ $(document).ready(function() {
     //   response = open(userText);
     //   $(".mainSection").append(response);
     // }
-    $(".main-section").append('<p><span class="userTextOutput">>' + userText + '</span></p>');
-    $(".main-section").append('<p>' + response + '</p>');
+    $(".main-section").append('<p><span class="userTextOutput outputArea">>' + userText + '</span></p>');
+    $(".main-section").append('<p class=outputArea>' + response + '</p>');
     $("#sidebar").text(inventory[0]);
 
     sidebar
