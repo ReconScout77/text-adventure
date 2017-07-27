@@ -141,6 +141,8 @@ var showHelp = function() {
 }
 
 var look = function(room) {
+  $(".room-2-show").hide();
+  $(".room-1-show").show();
   return room.look;
 }
 
@@ -156,6 +158,8 @@ var open = function(userInput, object) {
     if (object instanceof Door) {
       if (inventory[0] === "key") {
         room = new Room2();
+        $(".room-2-show").show();
+        $(".room-1-show").hide();
         return "You open the door and step into a dark room that smells of pungent cheese. The door slams shut behind you and disappears into the wall. You're now in room 2 trying to <code>look</code> around";
       } else {
       return "You try vigorously to get out but the door seems to be locked. Your mind starts to race.";
@@ -186,6 +190,7 @@ var use = function(userInput, object) {
       var enterPasscode = prompt("Please enter the passcode:");
       if (enterPasscode.toLowerCase() === object.passcode) {
         object.locked = false;
+        $(".key").show();
         return "You hear a click and the box creaks open. A key glows from the bottom of the box."
       } else {
         return "Incorrect passcode, please try again"
@@ -241,8 +246,10 @@ var inspect = function(userInput, object) {
         return "Maybe you should unlock this door.";
       }
   } else if (article === 'blood') {
+    $(".hole").show();
     return "The blood on the ground leads to a hole in the wall.";
   } else if (article === 'hole' || article === 'wall') {
+    $(".paper").show();
     return "You peer in the hole and see a small piece of paper.";
   } else if (article === 'paper') {
     return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said 'HoWled roll'......I think, but that's probably not right. I may have mixed up the order of the letters..\"";
@@ -250,7 +257,8 @@ var inspect = function(userInput, object) {
     if (!object.locked) {
       return "The box is open.";
     } else {
-      return "The box seems to be locked and made of industry-grade stainless steel with an alphanumeric digital keypad on the side. Perhaps there is a clue somewhere around the room...";
+      $(".keypad").show();
+      return "The box seems to be locked and made of industry-grade stainless steel with an alphanumeric digital keypad on the side. On the side of the box is says,\"Tell me a greeting to the universe that most first programs say.\"";
     }
   } else if (article === 'key') {
     if (!object.locked) {
@@ -309,13 +317,6 @@ $(document).ready(function() {
     var userTextArr = userText.split(' ');
     var response;
 
-    if (room.roomNumber === 2) {
-      $(".room-2-show").show();
-      $(".room-1-show").hide();
-    } else {
-      $(".room-2-show").hide();
-      $(".room-1-show").show();
-    }
 
 
     //debugger;

@@ -208,6 +208,23 @@ input.form-control:focus {
   display: none;
 }
 
+.hole {
+  display: none;
+}
+
+.keypad {
+  display: none;
+}
+
+.key {
+  display: none;
+}
+
+.paper {
+  display: none;
+}
+
+
 
 @media screen and (max-width: 1199px) {
   #inputArea {
