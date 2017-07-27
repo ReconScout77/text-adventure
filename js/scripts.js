@@ -200,9 +200,9 @@ $(document).ready(function() {
     var response;
     //debugger;
     switch (userTextArr[0]) {
-      // case "help":
-      //   response =  userInteraction(userText, room);
-      //   break;
+      case "help":
+        response =  userInteraction(userText, room);
+        break;
       case "look":
         if (userTextArr.length > 1) {
           response = 'Did you mean inspect?';
@@ -265,13 +265,13 @@ $(document).ready(function() {
         response = "That's not a command I recognize.";
         break;
     }
-    // if (userText === "help" || userText === "look") {
-    //   $(".mainSection").append(response);
-    // }else if (userText === "open" || userText === "open door") { debugger;
-    //   response = open(userText);
-    //   $(".mainSection").append(response);
-    //
-    // }
+    if (userText === "help" || userText === "look") {
+      $(".mainSection").append(response);
+    }else if (userText === "open" || userText === "open door") { debugger;
+      response = open(userText);
+      $(".mainSection").append(response);
+
+    }
     $(".main-section").append('<p><span class="userTextOutput">>' + userText + '</span></p>');
     $(".main-section").append('<p>' + response + '</p>');
     $("#sidebar").text(inventory[0]);
