@@ -5,48 +5,59 @@ var inventory = [];
 function Room () {
   this.roomNumber = 1;
   this.look = "You see a door, a stainless steel box, and a trail of blood.";
-  var door = new Door(true);
-  var box = new Box(true);
-  this.objects = [door, box];
 }
 
 function Room2 () {
   this.roomNumber = 2;
+  wall = new Wall(true);
   this.look = "You see four buttons, one in the north, one in the east, one in the south, and one in the west. You also notice an etching in the middle of the room.";
-  var wall = new Wall(true);
-  var northButton = false;
-  var southButton = false;
-  var eastButton = false;
-  var westButton = false;
-  var buttonOrder = [];
-  var correctOrder = ["north", "west", "south", "east"];
+  this.northButton = false;
+  this.southButton = false;
+  this.eastButton = false;
+  this.westButton = false;
+  this.buttonOrder = [];
+  this.correctOrder = ["north", "west", "south", "east"];
 }
+
+var wall = null;
 
 function Wall () {
   this.wallOpen = false;
 }
 
-var buttonPress =  function(direction) {
+var buttonPress =  function(direction, room) {
   switch(direction) {
     case 'north':
-      northButton = true;
+      if (room.northButton === true) {
+        return 'This button has already been pressed.';
+      }
+      room.northButton = true;
       break;
     case 'east':
-      eastButton = true;
+    if (room.eastButton === true) {
+      return 'This button has already been pressed.';
+    }
+      room.eastButton = true;
       break;
     case 'south':
-      southButton = true;
+    if (room.southButton === true) {
+      return 'This button has already been pressed.';
+    }
+      room.southButton = true;
       break;
     case 'west':
-      westButton = true;
+    if (room.westButton === true) {
+      return 'This button has already been pressed.';
+    }
+      room.westButton = true;
       break;
   }
-  buttonOrder.push(direction);
-  "You press the button.";
-  if (buttonOrder.length === 4) {
-    return checkOrder();
+  room.buttonOrder.push(direction);
+  var returnStr = "You press the button. ";
+  if (room.buttonOrder.length === 4) {
+    return checkOrder(room);
   } else {
-    "The button stays in.";
+    return returnStr += "The button stays in.";
   }
 }
 
@@ -75,15 +86,16 @@ var buttonPress =  function(direction) {
 
 var checkOrder = function(room) {
     for (var i = 0; i < 4; i++) {
-      if (buttonOrder[i] != correctOrder[i]) {
-        northButton = false;
-        southButton = false;
-        eastButton = false;
-        westButton = false;
-        buttonOrder = [];
+      if (room.buttonOrder[i] != room.correctOrder[i]) {
+        room.northButton = false;
+        room.southButton = false;
+        room.eastButton = false;
+        room.westButton = false;
+        room.buttonOrder = [];
         return "As you as you press in the button, all the buttons pop out. Clearly you are doing something wrong...";
       }
     }
+    wall.wallOpen = true;
     return "As you as you press in the last button, the northwestern wall opens and you see a bright light shimmering through.";
 }
 
@@ -192,36 +204,53 @@ var inspect = function(userInput, object) {
   var article = userInputArr[1];
   if (!article) {
     return "What would you like to inspect?";
-  } else {
-    if (object instanceof Door) {
+
+  } else if (room.roomNumber === 2) {
+    if (article === 'north') {
+      return 'Upon getting close to the button, you hear a faint crackling noise. You start to feel uncomfortably hot.';
+    } else if (article === 'east'){
+        return 'Upon getting close to the button you smell fresh soil. The button feels especially firm.';
+    } else if (article === 'south') {
+        return 'As you reach the button you hear a babbling brook. Your hair and clothes start to dampen.';
+    } else if (article === 'west'){
+        return 'As you reach the button you feel a slight breeze brush against your face.';
+    } else if (article === 'etching') {
+        return 'You can make out 4 letters on the ground: "F A W E"';
+    } else if (article === 'light' && wall.wallOpen) {
+        $(".main-section").text('');
+        return 'You make your way through the wall and into the light...';
+    } else {
+        return "You can't see any such object.";
+    }
+
+  } else if (object instanceof Door) {
       if (inventory[0] === 'key') {
         return "The door appears to be locked.";
       } else {
         return "Maybe you should unlock this door.";
       }
-    } else if (article === 'blood') {
-      return "The blood on the ground leads to a hole in the wall.";
-    } else if (article === 'hole' || article === 'wall') {
-      return "You peer in the hole and see a small piece of paper.";
-    } else if (article === 'paper') {
-      return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said 'HoWled roll'......I think, but that's probably not right. I may have mixed up the order of the letters..\"";
-    } else if (article === 'box') {
-      if (!object.locked) {
-        return "The box is open.";
-      } else {
-        return "The box seems to be locked and made of industry-grade stainless steel with an alphanumeric digital keypad on the side. Perhaps there is a clue somewhere around the room...";
-      }
-    } else if (article === 'key') {
-      if (!object.locked) {
-        return "This key looks like it was made for a door. Try opening one.";
-      } else {
-        return "You can't see any such object."
-      }
-    } else if (article === 'keypad') {
-        return "It appears to be a keypad that you can enter a password into. Perhaps you could try using it.";
+  } else if (article === 'blood') {
+    return "The blood on the ground leads to a hole in the wall.";
+  } else if (article === 'hole' || article === 'wall') {
+    return "You peer in the hole and see a small piece of paper.";
+  } else if (article === 'paper') {
+    return "The paper is smeared with blood. You look closer and see a message that says,\"My fondest moment as a programmer was my first website and it said 'HoWled roll'......I think, but that's probably not right. I may have mixed up the order of the letters..\"";
+  } else if (article === 'box') {
+    if (!object.locked) {
+      return "The box is open.";
     } else {
-      return "You can't see any such object.";
+      return "The box seems to be locked and made of industry-grade stainless steel with an alphanumeric digital keypad on the side. Perhaps there is a clue somewhere around the room...";
     }
+  } else if (article === 'key') {
+    if (!object.locked) {
+      return "This key looks like it was made for a door. Try opening one.";
+    } else {
+      return "You can't see any such object."
+    }
+  } else if (article === 'keypad') {
+      return "It appears to be a keypad that you can enter a password into. Perhaps you could try using it.";
+  } else {
+    return "You can't see any such object.";
   }
 }
 
@@ -253,7 +282,7 @@ var grab = function(userInput, object) {
     }
   }
 }
-var room = new Room();
+var room = new Room2();
 //User Interface Logic
 $(document).ready(function() {
   $("#inputArea").focus();
@@ -299,7 +328,7 @@ $(document).ready(function() {
         }else if (userTextArr[1] === 'box' || userTextArr[1] === 'keypad') {
           response = use(userText, box);
         }else if (userTextArr[1] === 'north' || userTextArr[1] === 'east' || userTextArr[1] === 'south' || userTextArr[1] === 'west' ) {
-          response = buttonPress(userTextArr[1]);
+          response = buttonPress(userTextArr[1], room);
         }else if (userTextArr[1] === 'button') {
            response = "Which button do you want to press?";
         }else {
@@ -332,6 +361,8 @@ $(document).ready(function() {
           response = inspect(userText, paper);
         } else if (userTextArr[1] === 'key') {
           response = inspect(userText, box);
+        } else if (userTextArr[1] === 'north' || userTextArr[1] === 'east' || userTextArr[1] === 'south' || userTextArr[1] === 'west') {
+          response = inspect(userText, room)
         } else {
           response = inspect(userText);
         }
