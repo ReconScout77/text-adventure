@@ -92,11 +92,11 @@ var checkOrder = function(room) {
         room.eastButton = false;
         room.westButton = false;
         room.buttonOrder = [];
-        return "As you as you press in the button, all the buttons pop out. Clearly you are doing something wrong...";
+        return "As soon as you press in the button, all the buttons pop out. Clearly you are doing something wrong...";
       }
     }
     wall.wallOpen = true;
-    return "As you as you press in the last button, the northwestern wall opens and you see a bright light shimmering through.";
+    return "As soon as you press in the last button, the northwestern wall opens and you see a bright light shimmering through.";
 }
 
 function Door() {
@@ -142,7 +142,9 @@ var open = function(userInput, object) {
   var article = userInputArr [1];
   if (!article) {
     return "What are you trying to open?";
-  }else if (article === 'key') {
+  } else if (room.roomNumber === 2) {
+    return "You can't open that...";
+  } else if (article === 'key') {
   	return 'Keys are for opening things not the other way around.';
   } else {
     if (object instanceof Door) {
@@ -183,7 +185,7 @@ var use = function(userInput, object) {
         return "Incorrect passcode, please try again"
       }
     }
-  } else if (article === 'key') {
+  } else if (article === 'key' && inventory[0] === 'key') {
     return "This key looks like it was made for a door. Try opening one."
   // } else if (object instanceof Box){
   //   // var enterPasscode = prompt("Please enter the passcode:");
@@ -216,7 +218,7 @@ var inspect = function(userInput, object) {
         return 'As you reach the button you feel a slight breeze brush against your face.';
     } else if (article === 'etching') {
         return 'You can make out 4 letters on the ground: "F A W E"';
-    } else if (article === 'button') {
+    } else if (article === 'button'|| article === 'buttons') {
         return 'Which button do you want to inspect?';
     }else if (article === 'light' && wall.wallOpen) {
         $(".main-section").text('');
@@ -246,7 +248,11 @@ var inspect = function(userInput, object) {
     }
   } else if (article === 'key') {
     if (!object.locked) {
-      return "This key looks like it was made for a door. Try opening one.";
+      if (inventory[0] === 'key') {
+        return "This key looks like it was made for a door. Try opening one.";
+      } else {
+        return "The key lays at the bottom of the box.";
+      }
     } else {
       return "You can't see any such object."
     }
@@ -262,6 +268,8 @@ var grab = function(userInput, object) {
   var article = userInputArr[1];
   if (!article) {
     return "What are you trying to grab?";
+  } else if (room.roomNumber === 2) {
+    return "You can't grab that!";
   } else if (article === "key") {
     if (!object.locked) {
       if (inventory[0] != "key") {
@@ -281,7 +289,7 @@ var grab = function(userInput, object) {
     } else if (object instanceof Box) {
       return "The box is bolted to the ground";
     }else {
-      return "You cant grab that!";
+      return "You can't grab that!";
     }
   }
 }
