@@ -118,18 +118,22 @@ var userInteraction = function(input, room) {
     case "help":
      return showHelp();
       break;
-    case "look" || "look around":
+    case "look":
       return look(room);
+      break;
+    case "look around":
+      return look(room);
+      break;
+    default:
+      return "Do you mean inspect?"
+      break;
   };
 }
 
 var showHelp = function() {
-    return "<p>Commands for House Escape:</p>" +
-      "<p>look = look around the room</p>" +
-      "<p>open + object = attempt to open the object</p>" +
-      "<p>use + object = interact with the object in the room or inventory</p>" +
-      "<p>grab + object = attempt to grab the object</p>" +
-      "<p>inspect + object = obtain further details about the object</p>";
+    return "<p>This game uses text commands. Try typing in one of the commands below plus a noun.</p>" +
+           "<p>For example try typing <code>look</code> or <code>inspect door</code></p>" +
+           "<p><code>open<em> noun</em></code> = attempt to open the object</p>"
 }
 
 var look = function(room) {
@@ -148,7 +152,7 @@ var open = function(userInput, object) {
     if (object instanceof Door) {
       if (inventory[0] === "key") {
         room = new Room2();
-        return "Congratulations!!! You open the door and step into a dark room that smells of pungent cheese. The door slams shut behind you and disappears into the wall.";
+        return "You open the door and step into a dark room that smells of pungent cheese. The door slams shut behind you and disappears into the wall. You're now in room 2 trying to <code>look</code> around";
       } else {
       return "You try vigorously to get out but the door seems to be locked. Your mind starts to race.";
       }
@@ -215,13 +219,13 @@ var inspect = function(userInput, object) {
     } else if (article === 'west'){
         return 'As you reach the button you feel a slight breeze brush against your face.';
     } else if (article === 'etching') {
-        return 'You can make out 4 letters on the ground: "F A W E"';
+        return 'You can make out 4 words on the ground: "Fire Air Water Earth...Trend wisely"';
     } else if (article === 'button') {
         return 'Which button do you want to inspect?';
     }else if (article === 'light' && wall.wallOpen) {
         $(".main-section").text('');
-        $(".main-section").append('<img src="img/Endgame.jpg">');
-        return 'You make your way through the wall and into the light...';
+        // $(".main-section").append('<img src="img/Endgame.jpg">');
+        return 'Congratulations!!!You make your way through the wall and into the light...';
     } else {
         return "You can't see any such object.";
     }
@@ -303,15 +307,11 @@ $(document).ready(function() {
     var response;
     //debugger;
     switch (userTextArr[0]) {
-      // case "help":
-      //   response =  userInteraction(userText, room);
-      //   break;
+      case "help":
+        response =  userInteraction(userText, room);
+        break;
       case "look":
-        if (userTextArr.length > 1) {
-          response = 'Did you mean inspect?';
-        } else {
-          response =  userInteraction(userText, room);
-        }
+        response =  userInteraction(userText, room);
         break;
       case "open":
         if (userTextArr[1] === 'door') {
@@ -379,7 +379,6 @@ $(document).ready(function() {
     // }else if (userText === "open" || userText === "open door") { debugger;
     //   response = open(userText);
     //   $(".mainSection").append(response);
-    //
     // }
     $(".main-section").append('<p><span class="userTextOutput">>' + userText + '</span></p>');
     $(".main-section").append('<p>' + response + '</p>');
@@ -389,4 +388,8 @@ $(document).ready(function() {
      $("#inputArea").val('');
     $('.main-section').animate({scrollTop: $('.main-section').prop("scrollHeight")}, 5);
   });
+
+  $("#helpCommand").click(function() {
+   $(".help-menu").slideToggle("slow");
+ });
 });
