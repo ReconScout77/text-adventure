@@ -5,6 +5,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Gloria+Hallelujah" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet">
     <script
       src="https://code.jquery.com/jquery-3.2.1.js"
       integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -15,18 +16,22 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <!-- Header / Room Name / Game Name -->
-        <div class="col-sm-12 header">
-          <h1>Text Adventure</h1>
-        </div>
+      <div class="jumbotron">
+        <h1>Escape House</h1>
       </div>
-      <div class="row">
+      <!-- <div class="row"> -->
+        <!-- Header / Room Name / Game Name -->
+        <!-- <div class="col-sm-12 header">
+          <h1>Text Adventure</h1>
+        </div> -->
+      <!-- </div> -->
+      <div class="row main">
         <!--Inventory Sidebar -->
+
         <div class="col-sm-3 sidebar">
           <div class="row inventory">
             <div class="col-md-12">
-              <h3>Inventory</h3>
+              <h3 id="inventory-text">Inventory</h3>
               <ul id="sidebar">
 
               </ul>
@@ -34,32 +39,70 @@
           </div>
           <div class="row help-menu">
             <div class="col-md-12">
-              "<h3>Commands for House Escape:</h3>
-                <p><strong>look</strong> = look around the room</p>
-                <p><strong>open + object</strong>= attempt to open the object</p>
-                <p><strong>use + object</strong> = interact with the object in the room or inventory</p>
-                <p><strong>rab + object</strong> = attempt to grab the object</p>
-                <p><strong>inspect + object</strong> = obtain further details about the object</p>
+              <h3>Commands:</h3>
+                <h4><code>help</code></h4>
+                <h4><code>look</code></h4>
+                <h4><code>open</code></h4>
+                <h4><code>use</code></h4>
+                <h4><code>grab</code></h4>
+                <h4><code>inspect</code></h4>
+              <h3>Objects in Room 1:</h3>
+                <h4><code>door</code></h4>
+                <h4><code>blood</code></h4>
+                <h4><code>box</code></h4>
+                <h4><code>hole</code></h4>
+                <h4><code>paper</code></h4>
+                <h4><code>key</code></h4>
+                <h4><code>keypad</code></h4>
+              <h3>Objects in Room 2:</h3>
+                <h4><code>north button</code></h4>
+                <h4><code>east button</code></h4>
+                <h4><code>south button</code></h4>
+                <h4><code>west button</code></h4>
+                <h4><code>etching</code></h4>
             </div>
           </div>
         </div>
+
         <!-- Main Section -->
-        <div class="col-sm-9 main-section">
-          <p id="game-header">You wake up in an unfamiliar room on the floor. Gazing up at the ceiliing you notice a message written in blood - refer the help menu to see the available commands". You consider it as you stand up.</p>
+        <div class="col-sm-8" id="style-1">
+          <div class="row">
+            <div class="col-md-12  main-section">
+              <p id="game-header">You wake up in an unfamiliar room on the floor. Gazing up at the ceiling you notice some commands written in blood. You commit them to memory as you stand up.</p>
+            </div>
+          </div>
+          <div class="row">
+            <form id="formInput">
+              <div class="col-md-12 ">
+                <input type="text" id="inputArea" class="form-control">
+              </div>
+            </form>
+          </div>
         </div>
       </div>
+        <!-- <div class="row">
+          <div class="col-md-4">
+            </div>
+            <div class="col-md-8">
+            <input type="text" id="inputArea" class="form-control">
+          </div>
+          </div>
+        </div> -->
       <!-- Input Area -->
-      <div class="row">
-        <div class="col-sm-12 userInput">
+      <!-- <div class="row">
+        <div class="col-md-6">
+        </div>
+        <div class="col-sm-4 userInput">
           <form id="formInput">
             <div class="form-group">
-              <input type="text" id="inputArea">
-              <h2>Type your commands here:</h2>
-              <!-- <button type="submit" class="btn" id="formSubmit">submit</button> -->
+              <h3>Type your commands here:</h3>
+              <input type="text" id="inputArea" class="form-control">
             </div>
           </form>
         </div>
-      </div>
+        <div class="col-md-2">
+        </div>
+      </div> -->
     </div>
   </body>
 </html>
