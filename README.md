@@ -1,14 +1,12 @@
-# _Word Adventure_
+# _Escape House_
 
-#### _Word Adventure 07.25.17_
+#### _Escape House 07.25.17_
 
-#### By _**Robert Murray, Victor Puentes, Michael Woldemedihin, Charlie Brown, Jessie Bryan**_
+#### By _**Robert Murray, Victor Puentes, Michael Woldemedihin, Charlie Kelson, Jesse Bryan**_
 
 ## Description
-### This is experimental text again
 
-
-_This is a text based game whose objective is solving puzzles to scape from the room_
+_This is a text based adventure game. The user will solve puzzles to try and escape from the house._
 
 | Behavior  | Input  | Output  |
 |---|---|---|
@@ -59,19 +57,13 @@ _This is a text based game whose objective is solving puzzles to scape from the 
 | User uses a button && it is the last(4th) button pressed && the order is correct|` use button X `|  As you as you press in the last button, the eastern wall opens and you see a bright light shimmering through. |
 | User types inspect light |` inspect light `| You make your way through the wall and into the light... |
 
-
-
-
-
-
-
-
 ## Setup/Installation Requirements
 
 * _Clone this repository_
 
 ## Known Bugs
 
+* _No known bugs at this time_
 
 ## Technologies Used
 
@@ -81,4 +73,4 @@ _JavaScript & jQuery_
 
 This software is licensed by the MIT License
 
-Copyright (c) 2017 **_Robert Murray, Victor Puentes, Michael Woldemedihin, Charlie Brown, Jessie Bryan_**
+Copyright (c) 2017 **_Robert Murray, Victor Puentes, Michael Woldemedihin, Charlie Kelson, Jesse Bryan_**
