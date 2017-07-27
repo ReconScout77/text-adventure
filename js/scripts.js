@@ -253,18 +253,19 @@ var grab = function(userInput, object) {
     }
   }
 }
-
+var room = new Room();
 //User Interface Logic
 $(document).ready(function() {
   $("#inputArea").focus();
   var door = new Door();
   var box = new Box();
+
   // var keypad = new KeyPad();
   var paper = new Paper();
   $("#formInput").submit(function(event){
     event.preventDefault();
     //debugger;
-    var room = new Room();
+
     var userText = $("#inputArea").val()
     var userTextArr = userText.split(' ');
     var response;
@@ -298,10 +299,10 @@ $(document).ready(function() {
         }else if (userTextArr[1] === 'box' || userTextArr[1] === 'keypad') {
           response = use(userText, box);
         }else if (userTextArr[1] === 'north' || userTextArr[1] === 'east' || userTextArr[1] === 'south' || userTextArr[1] === 'west' ) {
- +          response = buttonPress(userTextArr[1]);
- +      }else if (userTextArr[1] === 'button') {
- +          response = "Which button do you want to press?";
- +      }else {
+          response = buttonPress(userTextArr[1]);
+        }else if (userTextArr[1] === 'button') {
+           response = "Which button do you want to press?";
+        }else {
           response = use(userText);
         }
         break;
