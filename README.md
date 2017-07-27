@@ -4,7 +4,7 @@
 
 #### By _**Robert Murray, Victor Puentes, Michael Woldemedihin, Charlie Kelson, Jesse Bryan**_
 
-## Description
+## Description 
 
 _This is a text based adventure game. The user will solve puzzles to try and escape from the house._
 

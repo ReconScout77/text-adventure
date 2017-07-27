@@ -148,7 +148,7 @@ var open = function(userInput, object) {
     if (object instanceof Door) {
       if (inventory[0] === "key") {
         room = new Room2();
-        return "Congratulations!!! You open the door and step into a dark room that smells of fragrant cheese. The door slams shut behind you.";
+        return "Congratulations!!! You open the door and step into a dark room that smells of pungent cheese. The door slams shut behind you and disappears into the wall.";
       } else {
       return "You try vigorously to get out but the door seems to be locked. Your mind starts to race.";
       }
