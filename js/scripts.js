@@ -1,6 +1,7 @@
 var inventory = [];
 
 //Business logic
+// var roomNumber = 1;
 
 function Room () {
   this.roomNumber = 1;
@@ -298,7 +299,6 @@ $(document).ready(function() {
   $("#inputArea").focus();
   var door = new Door();
   var box = new Box();
-
   // var keypad = new KeyPad();
   var paper = new Paper();
   $("#formInput").submit(function(event){
@@ -308,6 +308,16 @@ $(document).ready(function() {
     var userText = $("#inputArea").val()
     var userTextArr = userText.split(' ');
     var response;
+
+    if (room.roomNumber === 2) {
+      $(".room-2-show").show();
+      $(".room-1-show").hide();
+    } else {
+      $(".room-2-show").hide();
+      $(".room-1-show").show();
+    }
+
+
     //debugger;
     switch (userTextArr[0]) {
       case "help":
@@ -315,6 +325,7 @@ $(document).ready(function() {
         break;
       case "look":
         response =  userInteraction(userText, room);
+        // $(".room-1-show").show();
         break;
       case "open":
         if (userTextArr[1] === 'door') {
@@ -387,7 +398,6 @@ $(document).ready(function() {
     $(".main-section").append('<p>' + response + '</p>');
     $("#sidebar").text(inventory[0]);
 
-    sidebar
      $("#inputArea").val('');
     $('.main-section').animate({scrollTop: $('.main-section').prop("scrollHeight")}, 5);
   });

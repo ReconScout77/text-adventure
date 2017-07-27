@@ -199,3 +199,11 @@ input.form-control:focus {
 .userTextOutput{
   color: black;
 }
+
+.room-2-show {
+  display: none;
+}
+
+.room-1-show {
+  display: none;
+}
