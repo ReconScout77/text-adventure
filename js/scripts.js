@@ -5,7 +5,7 @@ var inventory = [];
 
 function Room () {
   this.roomNumber = 1;
-  this.look = "You see a door, a stainless steel box, and a trail of blood.";
+  this.look = "You see a door, a box made of stainless steel, and a trail of blood.";
 }
 
 function Room2 () {
